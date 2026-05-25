@@ -23,7 +23,7 @@ export default function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors
               ${isActive
-                ? 'bg-brand-50 text-brand-700 dark:bg-brand-700/20 dark:text-brand-400'
+                ? 'bg-brand-50 dark:bg-brand-700/20 dark:text-brand-400'
                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
               }`
             }

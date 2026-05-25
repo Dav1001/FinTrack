@@ -1,11 +1,22 @@
+import { useLocation } from 'react-router-dom'
 import { Bell, Sun, Moon } from 'lucide-react'
 
+const pageMeta = {
+  '/dashboard':    { title: 'Dashboard',    subtitle: 'Financial overview — FY 2024' },
+  '/transactions': { title: 'Transactions', subtitle: 'All income and expenses'       },
+  '/reports':      { title: 'Reports',      subtitle: 'Annual performance summary'    },
+  '/settings':     { title: 'Settings',     subtitle: 'Account and preferences'       },
+}
+
 export default function Header({ theme, toggleTheme }) {
+  const { pathname } = useLocation()
+  const { title, subtitle } = pageMeta[pathname] || { title: 'FinTrack', subtitle: '' }
+
   return (
     <header className="h-16 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6">
       <div>
-        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">Overview</h1>
-        <p className="text-xs text-gray-500 dark:text-gray-400">Welcome back, Davit</p>
+        <h1 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h1>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>
       </div>
       <div className="flex items-center gap-3">
         <button

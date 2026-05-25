@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 export function useTheme() {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem('fintrack-theme') || 'light'
+    () => localStorage.getItem('fintrack-theme') || 'dark'
   )
 
   useEffect(() => {

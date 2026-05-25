@@ -5,6 +5,15 @@ import { formatCurrency, formatDate } from '../utils/formatters'
 import { ArrowUpRight, ArrowDownRight, Search, X, ChevronDown, Tag, Filter, SearchX } from 'lucide-react'
 import PageWrapper from '../components/ui/PageWrapper'
 
+const categoryColors = {
+  Revenue:    'bg-emerald-50  text-emerald-700  dark:bg-emerald-900/20  dark:text-emerald-400',
+  Cloud:      'bg-sky-50      text-sky-700      dark:bg-sky-900/20      dark:text-sky-400',
+  Software:   'bg-violet-50   text-violet-700   dark:bg-violet-900/20   dark:text-violet-400',
+  Marketing:  'bg-purple-50   text-purple-700   dark:bg-purple-900/20   dark:text-purple-400',
+  Payroll:    'bg-amber-50    text-amber-700    dark:bg-amber-900/20    dark:text-amber-400',
+  Operations: 'bg-rose-50     text-rose-700     dark:bg-rose-900/20     dark:text-rose-400',
+}
+
 function FilterDropdown({ value, onChange, options, icon: Icon }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
@@ -106,6 +115,21 @@ export default function Transactions() {
   return (
     <PageWrapper>
       <div className="space-y-4">
+
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Transactions</h2>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+              {transactions.length} total transactions
+            </p>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+            <span className="text-xs font-medium text-gray-500 dark:text-gray-400">
+              Showing {filtered.length} of {transactions.length}
+            </span>
+          </div>
+        </div>
+
         <div className="flex flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-64">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -187,7 +211,7 @@ export default function Transactions() {
                       </div>
                     </td>
                     <td className="px-5 py-3.5">
-                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
+                      <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${categoryColors[tx.category] || 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300'}`}>
                         {tx.category}
                       </span>
                     </td>
